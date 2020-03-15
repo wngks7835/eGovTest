@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="sampleDAO">
+	
+	<typeAlias alias="sampleVO" type="com.sample.sampleVO"/>
+	<typeAlias alias="egovMap" 			type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	
+	<resultMap class="egovMap" id="sampleList">
+		<result property="nttNo" column="NTT_NO"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="frstRegistPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="nttCn" column="NTT_CN" jdbcType="CLOB" javaType="String"/>
+	</resultMap>
+	
+	<select id="selectSampleList" resultMap="sampleList">
+		SELECT NTT_NO, NTT_SJ, NTT_CN, USE_AT, TO_CHAR(FRST_REGIST_PNTTM,'YYYY.MM.DD') AS FRST_REGIST_PNTTM
+		FROM COMTNBBS
+	</select>
+	
+</sqlMap>
